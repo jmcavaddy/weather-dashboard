@@ -11,12 +11,27 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="form-with-history">
+    <div class="form-history-container column">
         <form>
             <h1>Search for a City:</h1>
             <input type="text" name="city" id="city" placeholder="Enter a city name">
             <button type="submit">Search</button>
         </form>
     </div>
+    <div class="weather-container column">
+        <div class="weather-current">
+            <h2>Current Weather</h2>
+            <div class="weather-current_city"></div>
+            <div class="weather-current_date"></div>
+            <div class="weather-current_icon"></div>
+            <div class="weather-current_temp"></div>
+            <div class="weather-current_wind-speed"></div>
+            <div class="weather-current_humidity"></div>
+        </div>
+        <div class="weather-history">
+            <h2>5-Day Forecast</h2>
+            <div class="weather-history__list"></div>
+        </div>
+
 </body>
 </html>
