@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 ::after, ::before {
     box-sizing: border-box;
     margin: 0;
@@ -9,6 +13,7 @@ header {
     color: white;
     padding: 15px;
     padding-left: 15%;
+    border-radius: 5px;
 }
 
 .column {
@@ -21,11 +26,6 @@ header {
     flex-direction: column;
 }
 
-#history {
-    display: flex;
-    flex-direction: column;
-}
-
 .history-btn {
     margin: 10px 0px;
     padding: 10px;
@@ -34,10 +34,6 @@ header {
     background-image: linear-gradient(to right, blueviolet, blue);
     color: white;
     text-align: center;
-}
-
-#weather-container {
-    margin: 10px;
 }
 
 form {
@@ -72,6 +68,51 @@ form input {
     color: white;
 }
 
+#history {
+    display: flex;
+    flex-direction: column;
+}
+
+#weather-container {
+    width: 75%;
+    margin: 10px;
+}
+
+img {
+    max-width: 100px;
+    height: 100px;
+}
+
+.description-p {
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+#weather-current {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid blueviolet;
+    margin-bottom: 5%;
+    align-items: center;
+}
+
+#weather-forecast {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid blueviolet;
+}
+
+#forecast-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
 @media screen and (max-width: 600px){ 
     .form-history-container {
@@ -80,5 +121,6 @@ form input {
     .weather-container {
         width: 100%;
     }
+    
     
 }

@@ -48,8 +48,6 @@ let searchCity = function(event) {
       console.log(data);
       populateCurrentWeatherContainer(data);
       populateForecastContainer(data);
-
-      
     })
   });
 
@@ -106,8 +104,28 @@ let renderSavedCities = function() {
 let populateCurrentWeatherContainer = function(data) {
   // TODO: add code to populate the weather container with the data from the API call
   // First I'll clear the container of any existing content
-
-
+  document.querySelector("#weather-current").innerHTML = "";
+  // Then I'll create the elements I need to display the weather data
+  let cityName = document.createElement("h2");
+  let cityTemp = document.createElement("p");
+  let cityHumidity = document.createElement("p");
+  let cityWind = document.createElement("p");
+  let cityIcon = document.createElement("img");
+  let iconDescription = document.createElement("p");
+  // I'll add the data to the elements
+  console.log(data);
+  console.log(data.list[0].weather[0].icon);
+  cityName.innerHTML = `Current weather in ${data.city.name}`;
+  cityTemp.innerHTML = `Temperature: ${data.list[0].main.temp} &deg;F`;
+  cityHumidity.innerHTML = `Humidity: ${data.list[0].main.humidity}%`;
+  cityWind.innerHTML = `Wind Speed: ${data.list[0].wind.speed} MPH`;
+  cityIcon.setAttribute("src", `http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`);
+  cityIcon.setAttribute("alt", `Icon portraying ${data.list[0].weather[0].description}`);
+  iconDescription.innerHTML = data.list[0].weather[0].description;
+  iconDescription.classList.add("description-p");
+  // Then I'll append the elements to the current-weather div
+  document.querySelector("#weather-current").append(cityName, cityIcon, iconDescription, cityTemp, cityHumidity, cityWind);
+  
 }
 
 let populateForecastContainer = function(data) {
@@ -115,7 +133,6 @@ let populateForecastContainer = function(data) {
   // First I'll clear the container of any existing content
 
 }
-
 
 document.querySelector("#search-button").addEventListener("click", searchCity);
 
