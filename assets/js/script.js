@@ -14,7 +14,7 @@ let searchCity = function(event) {
   }
 
   // Build the URL for the API call
-  const requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=1&appid=${APIKey}`;
+  const requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=1&appid=${APIKey}`;
 
   // Make the API call using fetch()
   fetch(requestUrl)
