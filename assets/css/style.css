@@ -7,7 +7,8 @@
 header {
     background-image: linear-gradient(to right, blueviolet, blue);
     color: white;
-    padding: 15px 0px 15px 150px;
+    padding: 15px;
+    padding-left: 15%;
 }
 
 .column {
@@ -16,10 +17,27 @@ header {
 
 .form-history-container {
     width: 20%;
+    display: flex;
+    flex-direction: column;
 }
 
-.weather-container {
-    width: 80%;
+#history {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-btn {
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-image: linear-gradient(to right, blueviolet, blue);
+    color: white;
+    text-align: center;
+}
+
+#weather-container {
+    margin: 10px;
 }
 
 form {
@@ -28,13 +46,14 @@ form {
     text-align: center;
 }
 
-form h1 {
+.form-history-container h2 {
     margin: 10px 0px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-image: linear-gradient(to right, blueviolet, blue);
     color: white;
+    text-align: center;
 }
 
 form input {
@@ -44,7 +63,7 @@ form input {
     border: 1px solid #ccc;
 }
 
-form button {
+#search-button {
     margin: 10px 0px;
     padding: 10px;
     border-radius: 5px;
@@ -53,3 +72,13 @@ form button {
     color: white;
 }
 
+
+@media screen and (max-width: 600px){ 
+    .form-history-container {
+        width: 100%;
+    }
+    .weather-container {
+        width: 100%;
+    }
+    
+}

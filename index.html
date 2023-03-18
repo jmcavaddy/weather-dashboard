@@ -13,24 +13,19 @@
     </header>
     <div class="form-history-container column">
         <form>
-            <h1>Search for a City:</h1>
+            <h2>Search for a City:</h2>
             <input type="text" id="search-term" placeholder="Enter a city name">
             <button id="search-button">Search</button>
         </form>
+        <h2>Search History</h2>
+        <ul id="history"></ul>
     </div>
-    <div class="weather-container column">
+    <div id="weather-container" class="column">
         <div class="weather-current">
             <h2>Current Weather</h2>
-            <div class="weather-current_city"></div>
-            <div class="weather-current_date"></div>
-            <div class="weather-current_icon"></div>
-            <div class="weather-current_temp"></div>
-            <div class="weather-current_wind-speed"></div>
-            <div class="weather-current_humidity"></div>
         </div>
-        <div class="weather-history">
+        <div id="weather-forecast">
             <h2>5-Day Forecast</h2>
-            <div class="weather-history__list"></div>
         </div>
 
     <script src="./assets/js/script.js"></script>
