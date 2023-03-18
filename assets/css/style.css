@@ -114,6 +114,19 @@ p {
     justify-content: space-around;
 }
 
+.card{
+    min-width: 0;
+    border: 2px solid blueviolet;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.forecast-card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 @media screen and (max-width: 600px){ 
     .form-history-container {
         width: 100%;
@@ -122,5 +135,8 @@ p {
         width: 100%;
     }
     
+    .forecast-card-container {
+        flex-direction: column;
+    }
     
 }

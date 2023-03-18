@@ -13,11 +13,6 @@ let searchCity = function(event) {
     searchTerm = event.srcElement.textContent;
   }
 
-  // TODO: add an if statement to handle an empty search field
-  // if (searchTerm === "") {
-  //   return;
-  // }
-
   // Build the URL for the API call
   const requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=1&appid=${APIKey}`;
 
@@ -45,7 +40,6 @@ let searchCity = function(event) {
     .then(function (data) {
       // Here I have access to the weather data for the first city that matches the search term
       // I will now populate the current weather and forecast containers with the data
-      console.log(data);
       populateCurrentWeatherContainer(data);
       populateForecastContainer(data);
     })
@@ -56,10 +50,8 @@ let searchCity = function(event) {
 }
 
 let saveCity = function(city) {
-  // TODO: add code to save the city's name and coords to localStorage
   // First I'll check to see if there's anything in localStorage
   // If there isn't, I'll initialize a new array
-  console.log(city[0]);
   let savedCities = JSON.parse(localStorage.getItem("savedCities"));
   if (savedCities === null) {
     savedCities = [city[0]];
@@ -77,7 +69,6 @@ let saveCity = function(city) {
 }
 
 let renderSavedCities = function() {
-  // TODO: add code to render the saved cities to the page
   // First I'll clear the container of any existing content
   document.querySelector("#history").innerHTML = "";
   // Then I'll get the savedCities from localStorage
@@ -102,7 +93,6 @@ let renderSavedCities = function() {
 }
 
 let populateCurrentWeatherContainer = function(data) {
-  // TODO: add code to populate the weather container with the data from the API call
   // First I'll clear the container of any existing content
   document.querySelector("#weather-current").innerHTML = "";
   // Then I'll create the elements I need to display the weather data
@@ -113,9 +103,7 @@ let populateCurrentWeatherContainer = function(data) {
   let cityIcon = document.createElement("img");
   let iconDescription = document.createElement("p");
   // I'll add the data to the elements
-  console.log(data);
-  console.log(data.list[0].weather[0].icon);
-  cityName.innerHTML = `Current weather in ${data.city.name}`;
+  cityName.innerHTML = `Current weather in ${data.city.name} on ${moment().format("dddd, MMMM Do")}`;
   cityTemp.innerHTML = `Temperature: ${data.list[0].main.temp} &deg;F`;
   cityHumidity.innerHTML = `Humidity: ${data.list[0].main.humidity}%`;
   cityWind.innerHTML = `Wind Speed: ${data.list[0].wind.speed} MPH`;
@@ -129,9 +117,44 @@ let populateCurrentWeatherContainer = function(data) {
 }
 
 let populateForecastContainer = function(data) {
-  // TODO: add code to populate the forecast container with the data from the API call
   // First I'll clear the container of any existing content
+  document.querySelector("#weather-forecast").innerHTML = "";
 
+  // I'll create a title for the forecast container
+  let forecastTitle = document.createElement("h2");
+  forecastTitle.innerHTML = "5-Day Forecast for " + data.city.name;
+  document.querySelector("#weather-forecast").append(forecastTitle);
+
+  // I'll create a container for the forecast cards
+  let forecastCardContainer = document.createElement("div");
+  forecastCardContainer.classList.add("forecast-card-container");
+  document.querySelector("#weather-forecast").append(forecastCardContainer);
+
+
+  // Then I'll loop through the data to create the elements
+  for (let i = 0; i < data.list.length; i++) {
+    // I'll only display the data for 3pm
+    if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+      // Create the elements
+      let forecastCard = document.createElement("div");
+      let forecastDate = document.createElement("p");
+      let forecastIcon = document.createElement("img");
+      let forecastTemp = document.createElement("p");
+      let forecastHumidity = document.createElement("p");
+      // Add the data to the elements
+      forecastDate.innerHTML = moment(data.list[i].dt_txt).format("M/D/YYYY");
+      forecastIcon.setAttribute("src", `http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`);
+      forecastIcon.setAttribute("alt", `Icon portraying ${data.list[i].weather[0].description}`);
+      forecastTemp.innerHTML = `Temp: ${data.list[i].main.temp} &deg;F`;
+      forecastHumidity.innerHTML = `Humidity: ${data.list[i].main.humidity}%`;
+      // Add the card class to the elements
+      forecastCard.classList.add("card");
+      // Append the elements to the card
+      forecastCard.append(forecastDate, forecastIcon, forecastTemp, forecastHumidity);
+      // Append the cards to the forecast div
+      document.querySelector(".forecast-card-container").append(forecastCard);
+    }
+  }
 }
 
 document.querySelector("#search-button").addEventListener("click", searchCity);
